@@ -22,28 +22,26 @@ fun NoteColor(
     modifier: Modifier = Modifier,//1
     color: Color,
     size: Dp,
-    padding: Dp = 0.dp,
     border: Dp
 ){
 
     Box(
     modifier = Modifier//2
-            .padding(4.dp)
-            .size(40.dp)
-            .clip(CircleShape)
-            .background(Color.Red)
-            .border(
-                BorderStroke(
-                    2.dp,
-                    SolidColor(Color.Black)
-                ),
-                CircleShape
-            )
+        .size(size)
+        .clip(CircleShape)
+        .background(color)
+        .border(
+            BorderStroke(
+                border,
+                SolidColor(Color.Black)
+            ),
+            CircleShape
+        )
     )
 }
 
 @Preview
 @Composable
 fun NoteColorPreview(){
-    NoteColor(color = Color.Red, size = 40.dp, padding = 4.dp, border = 2.dp)
+    NoteColor(color = Color.Red, size = 40.dp, border = 2.dp)
 }
