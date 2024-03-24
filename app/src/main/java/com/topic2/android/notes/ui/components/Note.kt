@@ -22,6 +22,8 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.topic2.android.notes.theme.rwGreen
+import com.topic2.android.notes.theme.rwGreenDark
+import com.topic2.android.notes.theme.rwRed
 
 
 @Composable
@@ -35,6 +37,13 @@ fun Note() {
             .heightIn(min = 64.dp)
             .background(Color.White, backgroundShape)
         ){
+        NoteColor(
+            modifier = Modifier.align(Alignment.CenterVertically),
+            color = rwGreen,
+            size = 40.dp,
+            padding = 4.dp,
+            border = 1.dp
+        )
         Column(modifier = Modifier
             .weight(1f)
             .align(Alignment.CenterVertically)
@@ -46,8 +55,8 @@ fun Note() {
             checked = false,
             onCheckedChange = { },
             modifier = Modifier
-            .padding(start = 8.dp)
-            .align(Alignment.CenterVertically)
+                .padding(start = 8.dp)
+                .align(Alignment.CenterVertically)
         )
     }
 }
