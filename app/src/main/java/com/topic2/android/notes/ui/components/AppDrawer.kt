@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Switch
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -23,7 +24,6 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 
@@ -33,6 +33,7 @@ import com.topic2.android.notes.routing.NotesRouter
 import com.topic2.android.notes.routing.Screen
 
 import com.topic2.android.notes.theme.NotesTheme
+import com.topic2.android.notes.theme.NotesThemeSettings
 
 
 @Composable
@@ -146,6 +147,13 @@ private fun LightDarkThemeItem(){
               .padding(start = 8.dp, top = 8.dp, end = 8.dp, bottom = 8.dp)
               .align(alignment = Alignment.CenterVertically)
       )
+        Switch(
+            checked = NotesThemeSettings.isDarkThemeEnabled,
+            onCheckedChange = { NotesThemeSettings.isDarkThemeEnabled = it},
+            modifier = Modifier
+                .padding(start = 8.dp, end = 8.dp)
+                .align(alignment = Alignment.CenterVertically)
+        )
     }
 }
 @Preview
