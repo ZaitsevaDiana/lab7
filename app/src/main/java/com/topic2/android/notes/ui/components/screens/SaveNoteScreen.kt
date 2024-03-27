@@ -51,13 +51,27 @@ fun SaveNoteScreen(viewModel: MainViewModel){
     Scaffold (topBar = {
         val isEditingMode: Boolean = noteEntry.id != NEW_NOTE_ID
         SaveNoteTopAppBar(
-            isEditingMode = isEditingMode, onBackClick = {
+            isEditingMode = isEditingMode,
+            onBackClick = {
                 NotesRouter.navigateTo(Screen.Notes)
             },
-            onSaveNoteClick = {}, onOpenColorPickerClick = {}, onDeleteNoteClick = {}
+            onSaveNoteClick = {
+                viewModel.saveNote(noteEntry)
+            },
+            onOpenColorPickerClick = {},
+            onDeleteNoteClick = {
+                viewModel.moveNoteToTrash(noteEntry)
+            }
         )
     },
-        content = {}
+        content = {
+            SaveNoteContent(
+                note = noteEntry,
+                onNoteChange = {updateNoteEntry ->
+                    viewModel.onNoteEntryChange(updateNoteEntry)
+                }
+            )
+        }
     )
 }
 
