@@ -26,15 +26,15 @@ import com.topic2.android.notes.util.fromHex
 fun Note(
     modifier: Modifier = Modifier,
     note: NoteModel,
-    onNoteClick: (NoteModel) -> Unit = {}
+    onNoteClick: (NoteModel) -> Unit = {},
+    onNoteCheckedChange: (NoteModel)-> Unit = {},
+    isSelected: Boolean = false
 ) {
-    val isSelected = false
     val background = if (isSelected)
         Color.LightGray
     else
         MaterialTheme.colors.surface
 
-    val modifier = null
     Card (
         shape= RoundedCornerShape(4.dp),
         modifier = Modifier
@@ -73,9 +73,6 @@ fun Note(
 
 }
 
-private fun Unit.invoke(newNote: NoteModel) {
-    TODO("Not yet implemented")
-}
 
 fun onNoteCheckedChange(newNote: NoteModel) {
 

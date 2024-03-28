@@ -2,6 +2,7 @@ package com.topic2.android.notes.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -15,10 +16,10 @@ private val LightThemeColors = lightColors(
   secondary = rwGreen
 )
 
-private val DarkThemeColors = lightColors(
-  primary = Color(0xFF00A055),
-  primaryVariant = Color(0xFF00F884),
-  secondary = rwRed,
+private val DarkThemeColors = darkColors(
+  primary = Color(0xFFBB86FC),
+  primaryVariant = Color(0xFF3700B3),
+  secondary = Color(0xFF03DAC6),
   onPrimary = Color.White,
 )
 

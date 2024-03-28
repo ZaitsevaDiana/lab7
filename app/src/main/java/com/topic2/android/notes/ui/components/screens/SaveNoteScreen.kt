@@ -18,7 +18,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Switch
 import androidx.compose.material.Text
