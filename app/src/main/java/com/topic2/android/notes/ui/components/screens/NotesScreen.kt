@@ -74,6 +74,16 @@ fun NotesScreen(viewModel: MainViewModel) {
                 }
             )
         },
+        content ={it ->
+            if (notes.isNotEmpty()){
+                NotesList(
+                    notes = notes, onNoteCheckedChange = {
+                        viewModel.onNoteCheckedChange(it)
+                    },
+                    onNoteClick = {viewModel.onNoteClick(it)}
+                )
+            }
+        },
         scaffoldState = scaffoldState, // Здесь состояние Scaffold
         drawerContent = {//Здесь-Drawer UI
             AppDrawer(
@@ -84,16 +94,6 @@ fun NotesScreen(viewModel: MainViewModel) {
                     }
                 }
             )
-        },
-        content = { it ->
-            if (notes.isNotEmpty()){
-                NotesList(
-                    notes = notes, onNoteCheckedChange = {
-                        viewModel.onNoteCheckedChange(it)
-                    },
-                    onNoteClick = {viewModel.onNoteClick(it)}
-                )
-            }
         }
     )
 }
@@ -110,7 +110,9 @@ private  fun NotesList(
             val note = notes[noteIndex]
             Note(
                 note = note,
-                onNoteClick = onNoteClick
+                onNoteClick = onNoteClick,
+                onNoteCheckedChange = onNoteCheckedChange,
+                isSelected = false
             )
         }
     }
@@ -125,7 +127,6 @@ private fun NotesListPreview(){
             NoteModel(2,"Note 2", "Content 2", false),
             NoteModel(3,"Note 3", "Content 3", true)
         ),
-        onNoteCheckedChange = {},
-        onNoteClick = {}
-    )
+        onNoteCheckedChange = {}
+    ){}
 }

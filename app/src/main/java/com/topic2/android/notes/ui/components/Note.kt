@@ -24,16 +24,16 @@ import com.topic2.android.notes.util.fromHex
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Note(
-    modifier: Modifier = Modifier,
     note: NoteModel,
     onNoteClick: (NoteModel) -> Unit = {},
     onNoteCheckedChange: (NoteModel)-> Unit = {},
-    isSelected: Boolean = false
+    isSelected: Boolean
 ) {
     val background = if (isSelected)
         Color.LightGray
     else
         MaterialTheme.colors.surface
+    val modifier = null
 
     Card (
         shape= RoundedCornerShape(4.dp),
@@ -62,30 +62,29 @@ fun Note(
                             val newNote = note.copy(isCheckedOff = isChecked)
                             onNoteCheckedChange.invoke(newNote)
                         },
-                        modifier=Modifier.clickable {
-                            onNoteClick.invoke(note)
-                        }
+                        modifier=Modifier.padding(start = 8.dp)
                     )
                 }
+            },
+            modifier=Modifier.clickable {
+                onNoteClick.invoke(note)
             }
         )
     }
-
 }
 
 
-fun onNoteCheckedChange(newNote: NoteModel) {
-
-}
 
 @Preview
 @Composable
 private fun NotePreview(){
     Note(
+        isSelected = true,
         note = NoteModel(
             1,
-            "Заметка 1",
+            "Заметки 1",
             "Содержимое 1",
-            null)
+            null
+        )
     )
 }

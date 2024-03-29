@@ -69,9 +69,6 @@ fun SaveNoteScreen(viewModel: MainViewModel){
     val bottomDrawerState: BottomDrawerState = rememberBottomDrawerState(BottomDrawerValue.Closed)
     val coroutineScope= rememberCoroutineScope()
 
-    val moveNoteToTrashDialogShownState: MutableState<Boolean> = rememberSaveable {
-        mutableStateOf(false)
-    }
 
     BackHandler (
         onBack = {
@@ -82,6 +79,10 @@ fun SaveNoteScreen(viewModel: MainViewModel){
             }
         }
     )
+
+    val moveNoteToTrashDialogShownState: MutableState<Boolean> = rememberSaveable{
+        mutableStateOf(false)
+    }
 
     Scaffold (topBar = {
         val isEditingMode: Boolean = noteEntry.id != NEW_NOTE_ID
@@ -97,7 +98,7 @@ fun SaveNoteScreen(viewModel: MainViewModel){
                 coroutineScope.launch { bottomDrawerState.open() }
             },
             onDeleteNoteClick = {
-                moveNoteToTrashDialogShownState.value=true
+                moveNoteToTrashDialogShownState.value = true
             }
         )
     },
@@ -119,10 +120,12 @@ fun SaveNoteScreen(viewModel: MainViewModel){
                          viewModel.onNoteEntryChange(updateNoteEntry)
                      }
                   )
+              }
+           )
                   if (moveNoteToTrashDialogShownState.value){
                       AlertDialog(
                           onDismissRequest = {
-                                             moveNoteToTrashDialogShownState.value = false
+                               moveNoteToTrashDialogShownState.value = false
                           },
                           title = {
                                   Text("Move note to the trash?")
@@ -139,13 +142,21 @@ fun SaveNoteScreen(viewModel: MainViewModel){
                               }) {
                                   Text("Dismiss")
                               }
-                          })
+                          },
+                          dismissButton = {
+                              TextButton(onClick = {
+                                  moveNoteToTrashDialogShownState.value = false
+                              }) {
+                                  Text( "Dismiss")
+                              }
+                          }
+                      )
                   }
-              }
-           )
         }
     )
 }
+
+
 
 @Composable
 private fun ColorPicker(
@@ -346,7 +357,7 @@ private  fun NoteCheckOption(
     onCheckedChange: (Boolean)-> Unit
 ){
     Row (
-        Modifier
+        modifier = Modifier
             .padding(8.dp)
             .padding(top = 16.dp)
     ){
@@ -414,7 +425,7 @@ fun ContentTextFieldPreview(){
 @Preview
 @Composable
 fun NoteCheckOptionPreview(){
-    NoteCheckOption(false) {}
+    NoteCheckOption(isChecked = false) {}
 }
 
 @Preview
